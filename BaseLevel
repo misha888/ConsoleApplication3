@@ -1,0 +1,59 @@
+//Определить количество товаров, проданых продавцом "Иванов",вывести сведения о них и определить товар с максимальной стоимостью
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Product {
+    string seller;
+    string name;
+    int amount;
+    int price;
+    string date;
+};
+
+int main() {
+    const int amount_of_products = 3;
+    Product products[amount_of_products];
+
+    for (int i = 0; i < amount_of_products; i++) {
+        cout << "Введите имя продавца\n: ";
+        cin >> products[i].seller;
+        cout << "Введите название товара\n: ";
+        cin >> products[i].name;
+        cout << "Введите количество товара\n: ";
+        cin >> products[i].amount;
+        cout << "Введите цену товара\n: ";
+        cin >> products[i].price;
+        cout << "Введите дату поступления на склад в формате (yyyy.mm.dd)\n: ";
+        cin >> products[i].date;
+        cout << endl;
+    }
+
+    int amount_of_ivanov_products = 0;
+    for (int i = 0; i < amount_of_products; i++) {
+       if (products[i].seller == "Иванов") {
+           amount_of_ivanov_products += products[i].amount;
+
+           cout << "Продавец: " << products[i].seller << endl;
+           cout << "Название: " << products[i].name << endl;
+           cout << "Количество: " << products[i].amount << endl;
+           cout << "Цена: " << products[i].price << endl;
+           cout << "Дата поступления на склад: " << products[i].date << endl;
+       }
+    }
+    cout << "Иванов продал " << amount_of_ivanov_products << " товара.\n";
+
+    int max_price = 0;
+    for (int i = 0; i < amount_of_products; i++) {
+        if (products[i].price > max_price) {
+            max_price = products[i].price;
+        }
+    }
+
+    for (int i = 0; i < amount_of_products; i++) {
+        if (products[i].price == max_price) {
+            cout << "Самый дорогой товар называется " << products[i].name << endl;
+        }
+    }
+    return 0;
+}
